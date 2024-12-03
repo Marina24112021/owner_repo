@@ -16,13 +16,14 @@ public class DeleteBookFromCollectionStoreTest extends TestBase {
     @WithLogin
     @DisplayName("Using API and UI to delete books and check the empty collection")
     void successfulDeleteBookTest() {
+        ProfilePage profilePage = new ProfilePage();
         MethodsApi.deleteAllBooksApi();
         MethodsApi.addBookToCardApi("9781449325862");
 
-        ProfilePage.openPageFromUI();
-        ProfilePage.deleteOneBookFromUI();
-        ProfilePage.openPageFromUI();
-        ProfilePage.checkDeleteBookWithUI();
+        profilePage.openPageFromUI();
+        profilePage.deleteOneBookFromUI();
+        profilePage.openPageFromUI();
+        profilePage.checkDeleteBookWithUI();
 
         GetCollectionOfAllBooksModel response = MethodsApi.getAllCollectionOfBooksFromCardApi();
         assertThat(response.getBooks()).isEmpty();

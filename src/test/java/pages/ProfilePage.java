@@ -8,18 +8,18 @@ import static com.codeborne.selenide.Selenide.open;
 
 public class ProfilePage {
     @Step("Open page with selenoid")
-    public static void openPageFromUI() {
+    public void openPageFromUI() {
         open("/profile");
     }
 
     @Step("Delete added book from collection")
-    public static void deleteOneBookFromUI() {
+    public void deleteOneBookFromUI() {
         $("#delete-record-undefined").click();
         $("#closeSmallModal-ok").click();
     }
 
     @Step("Check collection is empty with UI")
-    public static void checkDeleteBookWithUI() {
+    public void checkDeleteBookWithUI() {
         $("#see-book-Git Pocket Guide").shouldNotBe(visible);
     }
 }
