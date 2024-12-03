@@ -13,7 +13,7 @@ import static specs.CodeDemoQASpec.*;
 
 public class MethodsApi {
     @Step("Delete all books in collection")
-    public static void deleteAllBooksApi() {
+    public void deleteAllBooksApi() {
         given()
                 .header("Authorization", "Bearer " +
                         Authorization.userAuthorizationApi().getToken())
@@ -25,7 +25,7 @@ public class MethodsApi {
     }
 
     @Step("Add book about git to collection")
-    public static void addBookToCardApi(String isbn) {
+    public void addBookToCardApi(String isbn) {
         IsbnModel isbnModel = new IsbnModel(isbn);
         AddBooksToCardModel request = new AddBooksToCardModel(Authorization.userAuthorizationApi().getUserId(), List.of(isbnModel));
         given(requestSpec)
@@ -38,7 +38,7 @@ public class MethodsApi {
     }
 
     @Step("Check that collection is empty from API ")
-    public static GetCollectionOfAllBooksModel getAllCollectionOfBooksFromCardApi() {
+    public GetCollectionOfAllBooksModel getAllCollectionOfBooksFromCardApi() {
         return given(requestSpec)
                 .header("Authorization", "Bearer " + Authorization.userAuthorizationApi().getToken())
                 .queryParam("UserId", Authorization.userAuthorizationApi().getUserId())

@@ -12,20 +12,22 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 @Tag("restapi")
 public class DeleteBookFromCollectionStoreTest extends TestBase {
+
     @Test
     @WithLogin
     @DisplayName("Using API and UI to delete books and check the empty collection")
     void successfulDeleteBookTest() {
         ProfilePage profilePage = new ProfilePage();
-        MethodsApi.deleteAllBooksApi();
-        MethodsApi.addBookToCardApi("9781449325862");
+        MethodsApi methodsApi = new MethodsApi();
+        methodsApi.deleteAllBooksApi();
+        methodsApi.addBookToCardApi("9781449325862");
 
         profilePage.openPageFromUI();
         profilePage.deleteOneBookFromUI();
         profilePage.openPageFromUI();
         profilePage.checkDeleteBookWithUI();
 
-        GetCollectionOfAllBooksModel response = MethodsApi.getAllCollectionOfBooksFromCardApi();
+        GetCollectionOfAllBooksModel response = methodsApi.getAllCollectionOfBooksFromCardApi();
         assertThat(response.getBooks()).isEmpty();
     }
 }

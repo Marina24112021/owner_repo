@@ -18,7 +18,6 @@ public class LoginExtension implements BeforeEachCallback {
     public void beforeEach(ExtensionContext context) {
         LoginResponseModel cookies = Authorization.userAuthorizationApi();
         LoginResponseModel model = new LoginResponseModel();
-        String userToken = model.getToken();
         open("/favicon.ico");
         getWebDriver().manage().addCookie(new Cookie("userID", cookies.getUserId()));
         getWebDriver().manage().addCookie(new Cookie("expires", cookies.getExpires()));
